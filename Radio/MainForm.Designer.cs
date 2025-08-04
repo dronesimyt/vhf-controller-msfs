@@ -1,4 +1,4 @@
-﻿namespace Radio
+﻿namespace VHF_Controller
 {
     partial class MainForm
     {

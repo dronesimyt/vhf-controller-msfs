@@ -11,7 +11,7 @@ using Microsoft.FlightSimulator.SimConnect;
 using System.Runtime.InteropServices;      // for COMException
 using System.Globalization;                // for parsing with InvariantCulture
 
-namespace Radio
+namespace VHF_Controller
 {
 
     public partial class MainForm : Form

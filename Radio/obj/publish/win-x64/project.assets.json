@@ -83,9 +83,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Shadow\\source\\repos\\Radio\\Radio\\Radio.csproj",
-      "projectName": "Radio",
-      "projectPath": "C:\\Users\\Shadow\\source\\repos\\Radio\\Radio\\Radio.csproj",
+      "projectUniqueName": "C:\\Users\\Shadow\\source\\repos\\Radio\\Radio\\VHF-Controller.csproj",
+      "projectName": "VHF-Controller",
+      "projectPath": "C:\\Users\\Shadow\\source\\repos\\Radio\\Radio\\VHF-Controller.csproj",
       "packagesPath": "C:\\Users\\Shadow\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Shadow\\source\\repos\\Radio\\Radio\\obj\\publish\\win-x64\\",
       "projectStyle": "PackageReference",

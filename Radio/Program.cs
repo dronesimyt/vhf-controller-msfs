@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Radio
+namespace VHF_Controller
 {
     static class Program
     {

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EvThNtf6WOs=",
+  "dgSpecHash": "hEp9ADMOiQY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Shadow\\source\\repos\\Radio\\Radio\\Radio.csproj",
+  "projectFilePath": "C:\\Users\\Shadow\\source\\repos\\Radio\\Radio\\VHF-Controller.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Shadow\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.18\\microsoft.net.illink.tasks.8.0.18.nupkg.sha512"
   ],
