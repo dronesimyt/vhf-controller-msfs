@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36327.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radio", "Radio\Radio.csproj", "{D073D365-0FDB-48BC-A7E7-B1CAC5D20EB7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D073D365-0FDB-48BC-A7E7-B1CAC5D20EB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D073D365-0FDB-48BC-A7E7-B1CAC5D20EB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D073D365-0FDB-48BC-A7E7-B1CAC5D20EB7}.Debug|x64.ActiveCfg = Debug|x64
+		{D073D365-0FDB-48BC-A7E7-B1CAC5D20EB7}.Debug|x64.Build.0 = Debug|x64
+		{D073D365-0FDB-48BC-A7E7-B1CAC5D20EB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D073D365-0FDB-48BC-A7E7-B1CAC5D20EB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D073D365-0FDB-48BC-A7E7-B1CAC5D20EB7}.Release|x64.ActiveCfg = Release|x64
+		{D073D365-0FDB-48BC-A7E7-B1CAC5D20EB7}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {053779B0-DC6A-4593-AA64-BE0ED06A6694}
+	EndGlobalSection
+EndGlobal
