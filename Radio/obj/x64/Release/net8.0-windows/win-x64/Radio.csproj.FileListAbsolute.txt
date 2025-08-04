@@ -18,3 +18,4 @@ C:\Users\Shadow\source\repos\Radio\Radio\obj\x64\Release\net8.0-windows\win-x64\
 C:\Users\Shadow\source\repos\Radio\Radio\obj\x64\Release\net8.0-windows\win-x64\Radio.pdb
 C:\Users\Shadow\source\repos\Radio\Radio\obj\x64\Release\net8.0-windows\win-x64\Radio.genruntimeconfig.cache
 C:\Users\Shadow\source\repos\Radio\Radio\obj\x64\Release\net8.0-windows\win-x64\ref\Radio.dll
+C:\Users\Shadow\source\repos\Radio\Radio\obj\x64\Release\net8.0-windows\win-x64\Radio.sourcelink.json

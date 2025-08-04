@@ -18,7 +18,7 @@ namespace Radio
     {
 
         private string frequencyBuffer = "";
-        private SimConnect simConnect = null;
+        private SimConnect? simConnect = null;
         private const int WM_USER_SIMCONNECT = 0x0402;
         private bool advPrefilled = false;
         private bool isConnected = false;
@@ -76,7 +76,7 @@ namespace Radio
                 {
                     simConnect?.ReceiveMessage();
                 }
-                catch (COMException ex)
+                catch (COMException)
                 {
                     // Log or inspect ex.ErrorCode if you want,
                     // then cleanly disconnect and update UI:
@@ -88,10 +88,10 @@ namespace Radio
                 base.DefWndProc(ref m);
             }
         }
-
+            
         private void HandleSimDisconnect()
         {
-            try { simConnect.Dispose(); } catch { }
+            try { simConnect?.Dispose(); } catch { }
             simConnect = null;
             isConnected = false;
 
@@ -194,7 +194,7 @@ namespace Radio
             if (isConnected)
             {
                 lblStatus.Text = "Connected";
-                lblStatus.ForeColor = Color.Lime;
+                lblStatus.ForeColor = Color.Green;
             }
             else
             {
@@ -263,6 +263,8 @@ namespace Radio
             uint freqHz = (uint)(freqDec * 1_000_000m);
             if (simConnect != null)
             {
+                try
+                {
                 simConnect.TransmitClientEvent(
                     SimConnect.SIMCONNECT_OBJECT_ID_USER,
                     EVENT_ID.COM1_SET_HZ,
@@ -270,6 +272,17 @@ namespace Radio
                     GROUP_ID.GROUP0,
                     SIMCONNECT_EVENT_FLAG.GROUPID_IS_PRIORITY
                 );
+
+                }
+                catch (COMException)
+                {
+                    //MessageBox.Show("Error: could not send frequency to MSFS. Please reconnect and try again.",
+                    //                "SimConnect Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lblFeedback.Text = "UNABLE";
+                    lblFeedback.ForeColor = Color.Red;
+                    HandleSimDisconnect();
+                    return;
+                }
 
                 // Immediately reset the panel to its initial state:
                 // Show the green feedback (“CHECK”) for 1 second:
@@ -290,7 +303,7 @@ namespace Radio
         private void btn1_Click(object sender, EventArgs e)
         {
             btnEnter.Text = "SET";
-            Button btn = sender as Button;
+            Button? btn = sender as Button;
             if (btn == null || frequencyBuffer.Length >= 6) return; // Ensure max 6 digits
 
             string newBuffer = frequencyBuffer + btn.Text;
@@ -308,7 +321,7 @@ namespace Radio
 
         private void btn2_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
+            Button? btn = sender as Button;
             if (btn == null || frequencyBuffer.Length >= 6) return; // Ensure max 6 digits
 
             string newBuffer = frequencyBuffer + btn.Text;
@@ -326,7 +339,7 @@ namespace Radio
 
         private void btn3_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
+            Button? btn = sender as Button;
             if (btn == null || frequencyBuffer.Length >= 6) return; // Ensure max 6 digits
 
             string newBuffer = frequencyBuffer + btn.Text;
@@ -344,7 +357,7 @@ namespace Radio
 
         private void btn4_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
+            Button? btn = sender as Button;
             if (btn == null || frequencyBuffer.Length >= 6) return; // Ensure max 6 digits
 
             string newBuffer = frequencyBuffer + btn.Text;
@@ -362,7 +375,7 @@ namespace Radio
 
         private void btn5_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
+            Button? btn = sender as Button;
             if (btn == null || frequencyBuffer.Length >= 6) return; // Ensure max 6 digits
 
             string newBuffer = frequencyBuffer + btn.Text;
@@ -380,7 +393,7 @@ namespace Radio
 
         private void btn6_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
+            Button? btn = sender as Button;
             if (btn == null || frequencyBuffer.Length >= 6) return; // Ensure max 6 digits
 
             string newBuffer = frequencyBuffer + btn.Text;
@@ -398,7 +411,7 @@ namespace Radio
 
         private void btn7_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
+            Button? btn = sender as Button;
             if (btn == null || frequencyBuffer.Length >= 6) return; // Ensure max 6 digits
 
             string newBuffer = frequencyBuffer + btn.Text;
@@ -416,7 +429,7 @@ namespace Radio
 
         private void btn8_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
+            Button? btn = sender as Button;
             if (btn == null || frequencyBuffer.Length >= 6) return; // Ensure max 6 digits
 
             string newBuffer = frequencyBuffer + btn.Text;
@@ -434,7 +447,7 @@ namespace Radio
 
         private void btn9_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
+            Button? btn = sender as Button;
             if (btn == null || frequencyBuffer.Length >= 6) return; // Ensure max 6 digits
 
             string newBuffer = frequencyBuffer + btn.Text;
@@ -453,7 +466,7 @@ namespace Radio
 
         private void btn0_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
+            Button? btn = sender as Button;
             if (btn == null || frequencyBuffer.Length >= 6) return; // Ensure max 6 digits
 
             string newBuffer = frequencyBuffer + btn.Text;
@@ -469,7 +482,7 @@ namespace Radio
             UpdateButtonStates();
         }
 
-        private void btnReset_Click(object sender, EventArgs e)
+        private void btnReset_Click(object? sender, EventArgs? e)
         {
             frequencyBuffer = "";  // Clear the input completely
             lblFrequencyDisplay.Text = "___.___";  // Show placeholder underscores
