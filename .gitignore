@@ -1,0 +1,80 @@
+# Build Folders (you can keep bin/obj/ if you want to check in built EXEs, but usually you don’t)
+[Bb]in/
+[Oo]bj/
+
+# VS & Rider
+.vs/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# MonoDevelop
+*.pidb
+*.userprefs
+
+# Build results
+*.dll
+*.exe
+*.pdb
+*.cache
+*.ilk
+*.meta
+*.obj
+*.iobj
+*.pch
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlh
+*.tli
+*.tmp
+*.tmp_proj
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# NuGet
+*.nupkg
+# The packages folder can be ignored because of PackageReference
+packages/
+
+# Publish output
+publish/
+*.Publish.xml
+*.deploy/
+*.deployment/
+*.application
+
+# DotNet CLI
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Rider
+*.DotSettings.user
+
+# ESLint cache
+.eslintcache
+
+# User-specific files
+*.user
+*.userosscache
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# VS Code
+.vscode/*
+
+# MaterialSkin (if installed)
+.materialskin/
+
+# Temporary Files
+~$*
