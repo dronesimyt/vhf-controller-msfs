@@ -1,9 +1,10 @@
-# Build Folders (you can keep bin/obj/ if you want to check in built EXEs, but usually you don’t)
-[Bb]in/
-[Oo]bj/
-
-# VS & Rider
+# Visual Studio
 .vs/
+
+# Build output
+**/bin/
+**/obj/
+
 .idea/
 *.suo
 *.user

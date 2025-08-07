@@ -1,2 +1,0 @@
-C:\Users\Shadow\source\repos\Radio\Radio\bin\Release\net8.0-windows\publish\win-x86\VHF-Controller.pdb
-C:\Users\Shadow\source\repos\Radio\Radio\bin\Release\net8.0-windows\publish\win-x86\VHF-Controller.exe
