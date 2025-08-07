@@ -175,7 +175,7 @@
             btnReset.Location = new Point(19, 215);
             btnReset.Name = "btnReset";
             btnReset.Size = new Size(91, 48);
-            btnReset.TabIndex = 13;
+            btnReset.TabIndex = 99;
             btnReset.Text = "RST";
             btnReset.UseVisualStyleBackColor = true;
             btnReset.Click += btnReset_Click;

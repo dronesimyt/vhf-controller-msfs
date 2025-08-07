@@ -47,6 +47,11 @@ namespace VHF_Controller
         {
             InitializeComponent();
             InitTimer();
+
+            this.KeyPreview = true;
+            this.KeyDown += MainForm_KeyDown;
+
+
             // Start in a disconnected state until ConnectToSim() runs:
             isConnected = false;
             btnReconnect.Visible = false;      // hide until we know we’re disconnected
@@ -200,6 +205,37 @@ namespace VHF_Controller
             {
                 lblStatus.Text = "Disconnected";
                 lblStatus.ForeColor = Color.Red;
+            }
+        }
+
+        // 2) Handle numpad digits, Backspace → Reset, Enter → Set/ADV
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            // NUMPAD 0–9 → btn0…btn9
+            if (e.KeyCode >= Keys.NumPad0 && e.KeyCode <= Keys.NumPad9)
+            {
+                int num = e.KeyCode - Keys.NumPad0;               // 0…9
+                var btn = Controls.Find("btn" + num, true)       // find your button
+                                .FirstOrDefault() as Button;
+                if (btn != null && btn.Enabled)
+                    btn.PerformClick();                          // simulate click
+                e.Handled = true;
+                return;
+            }
+
+            // BACKSPACE → Reset
+            if (e.KeyCode == Keys.Back)
+            {
+                btnReset.PerformClick();
+                e.Handled = true;
+                return;
+            }
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnEnter.PerformClick();
+                e.Handled = true;
+                e.SuppressKeyPress = true;   // prevent the focused button from also seeing Enter
             }
         }
 
