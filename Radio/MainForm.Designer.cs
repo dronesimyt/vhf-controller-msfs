@@ -47,12 +47,14 @@
             lblFeedback = new Label();
             lblStatus = new Label();
             btnReconnect = new Button();
+            chkAlwaysOnTop = new CheckBox();
             SuspendLayout();
             // 
             // btn1
             // 
             btn1.Font = new Font("Audiowide", 16F, FontStyle.Bold);
-            btn1.Location = new Point(19, 53);
+            btn1.ForeColor = SystemColors.ControlText;
+            btn1.Location = new Point(12, 50);
             btn1.Name = "btn1";
             btn1.Size = new Size(91, 48);
             btn1.TabIndex = 0;
@@ -64,7 +66,7 @@
             // 
             lblFrequencyDisplay.AutoSize = true;
             lblFrequencyDisplay.Font = new Font("Audiowide", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblFrequencyDisplay.Location = new Point(76, 9);
+            lblFrequencyDisplay.Location = new Point(69, 6);
             lblFrequencyDisplay.Name = "lblFrequencyDisplay";
             lblFrequencyDisplay.Size = new Size(164, 41);
             lblFrequencyDisplay.TabIndex = 3;
@@ -74,7 +76,8 @@
             // btn2
             // 
             btn2.Font = new Font("Audiowide", 16F, FontStyle.Bold);
-            btn2.Location = new Point(112, 53);
+            btn2.ForeColor = SystemColors.ControlText;
+            btn2.Location = new Point(105, 50);
             btn2.Name = "btn2";
             btn2.Size = new Size(91, 48);
             btn2.TabIndex = 4;
@@ -85,7 +88,8 @@
             // btn3
             // 
             btn3.Font = new Font("Audiowide", 16F, FontStyle.Bold);
-            btn3.Location = new Point(204, 53);
+            btn3.ForeColor = SystemColors.ControlText;
+            btn3.Location = new Point(197, 50);
             btn3.Name = "btn3";
             btn3.Size = new Size(91, 48);
             btn3.TabIndex = 5;
@@ -96,7 +100,8 @@
             // btn6
             // 
             btn6.Font = new Font("Audiowide", 16F, FontStyle.Bold);
-            btn6.Location = new Point(204, 107);
+            btn6.ForeColor = SystemColors.ControlText;
+            btn6.Location = new Point(197, 104);
             btn6.Name = "btn6";
             btn6.Size = new Size(91, 48);
             btn6.TabIndex = 8;
@@ -107,7 +112,8 @@
             // btn5
             // 
             btn5.Font = new Font("Audiowide", 16F, FontStyle.Bold);
-            btn5.Location = new Point(112, 107);
+            btn5.ForeColor = SystemColors.ControlText;
+            btn5.Location = new Point(105, 104);
             btn5.Name = "btn5";
             btn5.Size = new Size(91, 48);
             btn5.TabIndex = 7;
@@ -118,7 +124,8 @@
             // btn4
             // 
             btn4.Font = new Font("Audiowide", 16F, FontStyle.Bold);
-            btn4.Location = new Point(19, 107);
+            btn4.ForeColor = SystemColors.ControlText;
+            btn4.Location = new Point(12, 104);
             btn4.Name = "btn4";
             btn4.Size = new Size(91, 48);
             btn4.TabIndex = 6;
@@ -129,7 +136,8 @@
             // btn9
             // 
             btn9.Font = new Font("Audiowide", 16F, FontStyle.Bold);
-            btn9.Location = new Point(204, 161);
+            btn9.ForeColor = SystemColors.ControlText;
+            btn9.Location = new Point(197, 158);
             btn9.Name = "btn9";
             btn9.Size = new Size(91, 48);
             btn9.TabIndex = 11;
@@ -140,7 +148,8 @@
             // btn8
             // 
             btn8.Font = new Font("Audiowide", 16F, FontStyle.Bold);
-            btn8.Location = new Point(112, 161);
+            btn8.ForeColor = SystemColors.ControlText;
+            btn8.Location = new Point(105, 158);
             btn8.Name = "btn8";
             btn8.Size = new Size(91, 48);
             btn8.TabIndex = 10;
@@ -151,7 +160,8 @@
             // btn7
             // 
             btn7.Font = new Font("Audiowide", 16F, FontStyle.Bold);
-            btn7.Location = new Point(19, 161);
+            btn7.ForeColor = SystemColors.ControlText;
+            btn7.Location = new Point(12, 158);
             btn7.Name = "btn7";
             btn7.Size = new Size(91, 48);
             btn7.TabIndex = 9;
@@ -162,7 +172,8 @@
             // btn0
             // 
             btn0.Font = new Font("Audiowide", 16F, FontStyle.Bold);
-            btn0.Location = new Point(112, 215);
+            btn0.ForeColor = SystemColors.ControlText;
+            btn0.Location = new Point(105, 212);
             btn0.Name = "btn0";
             btn0.Size = new Size(91, 48);
             btn0.TabIndex = 12;
@@ -173,7 +184,8 @@
             // btnReset
             // 
             btnReset.Font = new Font("Audiowide", 12F, FontStyle.Bold);
-            btnReset.Location = new Point(19, 215);
+            btnReset.ForeColor = SystemColors.ControlText;
+            btnReset.Location = new Point(12, 212);
             btnReset.Name = "btnReset";
             btnReset.Size = new Size(91, 48);
             btnReset.TabIndex = 99;
@@ -184,7 +196,8 @@
             // btnEnter
             // 
             btnEnter.Font = new Font("Audiowide", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnEnter.Location = new Point(204, 215);
+            btnEnter.ForeColor = SystemColors.ControlText;
+            btnEnter.Location = new Point(197, 212);
             btnEnter.Name = "btnEnter";
             btnEnter.Size = new Size(91, 48);
             btnEnter.TabIndex = 14;
@@ -203,7 +216,7 @@
             lblFeedback.BackColor = Color.Transparent;
             lblFeedback.Font = new Font("Microsoft Sans Serif", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblFeedback.ForeColor = Color.LimeGreen;
-            lblFeedback.Location = new Point(24, 118);
+            lblFeedback.Location = new Point(17, 115);
             lblFeedback.Name = "lblFeedback";
             lblFeedback.Size = new Size(261, 73);
             lblFeedback.TabIndex = 17;
@@ -214,15 +227,16 @@
             // 
             lblStatus.AutoSize = true;
             lblStatus.ForeColor = Color.Red;
-            lblStatus.Location = new Point(19, 273);
+            lblStatus.Location = new Point(12, 296);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(79, 15);
             lblStatus.TabIndex = 18;
             lblStatus.Text = "Disconnected";
+            lblStatus.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // btnReconnect
             // 
-            btnReconnect.Location = new Point(220, 269);
+            btnReconnect.Location = new Point(213, 292);
             btnReconnect.Name = "btnReconnect";
             btnReconnect.Size = new Size(75, 23);
             btnReconnect.TabIndex = 19;
@@ -230,9 +244,21 @@
             btnReconnect.UseVisualStyleBackColor = true;
             btnReconnect.Click += btnReconnect_Click;
             // 
+            // chkAlwaysOnTop
+            // 
+            chkAlwaysOnTop.AutoSize = true;
+            chkAlwaysOnTop.Location = new Point(12, 274);
+            chkAlwaysOnTop.Name = "chkAlwaysOnTop";
+            chkAlwaysOnTop.Size = new Size(101, 19);
+            chkAlwaysOnTop.TabIndex = 100;
+            chkAlwaysOnTop.Text = "Always on top";
+            chkAlwaysOnTop.UseVisualStyleBackColor = true;
+            chkAlwaysOnTop.CheckedChanged += chkAlwaysOnTop_CheckedChanged;
+            // 
             // MainForm
             // 
-            ClientSize = new Size(323, 299);
+            ClientSize = new Size(302, 331);
+            Controls.Add(chkAlwaysOnTop);
             Controls.Add(btnReconnect);
             Controls.Add(lblStatus);
             Controls.Add(lblFeedback);
@@ -251,6 +277,7 @@
             Controls.Add(btn1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainForm";
+            Opacity = 0.85D;
             Text = "VHF-Controller";
             ResumeLayout(false);
             PerformLayout();
@@ -276,6 +303,7 @@
         private System.Windows.Forms.Label lblFeedback;
         private Label lblStatus;
         private Button btnReconnect;
+        private CheckBox chkAlwaysOnTop;
     }
 }
 

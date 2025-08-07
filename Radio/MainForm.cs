@@ -1,22 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Microsoft.FlightSimulator.SimConnect;
+﻿using Microsoft.FlightSimulator.SimConnect;
 using System.Runtime.InteropServices;      // for COMException
-using System.Globalization;                // for parsing with InvariantCulture
+using System.Globalization;
 
 namespace VHF_Controller
 {
 
     public partial class MainForm : Form
     {
-
         private string frequencyBuffer = "";
         private SimConnect? simConnect = null;
         private const int WM_USER_SIMCONNECT = 0x0402;
@@ -48,6 +38,14 @@ namespace VHF_Controller
             InitializeComponent();
             InitTimer();
 
+            // Prevent manual resizing
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;   // disable the Maximize button
+            this.MinimizeBox = true;    // leave Minimize enabled if you want
+
+            // Optional: absolutely lock the client size
+            this.MaximumSize = this.MinimumSize = this.Size;
+
             this.KeyPreview = true;
             this.KeyDown += MainForm_KeyDown;
 
@@ -60,7 +58,6 @@ namespace VHF_Controller
             ConnectToSim();                    // attempt initial connection
             btnReset_Click(null, null);        // set up your panel UI
         }
-
 
         private void InitTimer()
         {
@@ -93,7 +90,7 @@ namespace VHF_Controller
                 base.DefWndProc(ref m);
             }
         }
-            
+
         private void HandleSimDisconnect()
         {
             try { simConnect?.Dispose(); } catch { }
@@ -209,7 +206,7 @@ namespace VHF_Controller
         }
 
         // 2) Handle numpad digits, Backspace → Reset, Enter → Set/ADV
-        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        private void MainForm_KeyDown(object? sender, KeyEventArgs e)
         {
             // NUMPAD 0–9 → btn0…btn9
             if (e.KeyCode >= Keys.NumPad0 && e.KeyCode <= Keys.NumPad9)
@@ -301,13 +298,13 @@ namespace VHF_Controller
             {
                 try
                 {
-                simConnect.TransmitClientEvent(
-                    SimConnect.SIMCONNECT_OBJECT_ID_USER,
-                    EVENT_ID.COM1_SET_HZ,
-                    freqHz,
-                    GROUP_ID.GROUP0,
-                    SIMCONNECT_EVENT_FLAG.GROUPID_IS_PRIORITY
-                );
+                    simConnect.TransmitClientEvent(
+                        SimConnect.SIMCONNECT_OBJECT_ID_USER,
+                        EVENT_ID.COM1_SET_HZ,
+                        freqHz,
+                        GROUP_ID.GROUP0,
+                        SIMCONNECT_EVENT_FLAG.GROUPID_IS_PRIORITY
+                    );
 
                 }
                 catch (COMException)
@@ -671,57 +668,9 @@ namespace VHF_Controller
             }
         }
 
-        //private bool IsValidPrefix(string input)
-        //{
-        //    if (input.Length == 1)
-        //    {
-        //        // First digit must always be '1'
-        //        return input == "1";
-        //    }
-        //    else if (input.Length == 2)
-        //    {
-        //        // Second digit must be 1, 2, or 3 (to allow 118-136 range)
-        //        char secondDigit = input[1];
-        //        return secondDigit == '1' || secondDigit == '2' || secondDigit == '3';
-        //    }
-        //    else if (input.Length == 3)
-        //    {
-        //        // Third digit depends on the second digit:
-        //        char secondDigit = input[1];
-        //        char thirdDigit = input[2];
-
-        //        if (secondDigit == '1') return thirdDigit == '8' || thirdDigit == '9'; // 118, 119
-        //        if (secondDigit == '2') return thirdDigit >= '0' && thirdDigit <= '9'; // 120-129
-        //        if (secondDigit == '3') return thirdDigit >= '0' && thirdDigit <= '6'; // 130-136
-        //    }
-
-        //    return false;
-        //}
-
-        //private bool IsValidDecimal(string input)
-        //{
-        //    if (input.Length < 4) return true; // Allow typing until at least the 4th digit is entered
-
-        //    if (input.Length == 4) // First digit after the decimal
-        //    {
-        //        char firstDecimalDigit = input[3];
-        //        return firstDecimalDigit >= '0' && firstDecimalDigit <= '9'; // Must be 0-9
-        //    }
-
-        //    if (input.Length == 5) // Second digit after the decimal
-        //    {
-        //        char secondDecimalDigit = input[4];
-        //        return secondDecimalDigit >= '0' && secondDecimalDigit <= '9'; // Must be 0-9
-        //    }
-
-        //    if (input.Length == 6) // Third decimal digit (final digit)
-        //    {
-        //        char thirdDecimalDigit = input[5];
-        //        return thirdDecimalDigit == '0' || thirdDecimalDigit == '5'; // Must be 0 or 5
-        //    }
-
-        //    return true; // If all rules pass, input is valid
-        //}
-
+        private void chkAlwaysOnTop_CheckedChanged(object sender, EventArgs e)
+        {
+            this.TopMost = chkAlwaysOnTop.Checked;
+        }
     }
 }
