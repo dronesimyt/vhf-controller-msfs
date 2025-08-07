@@ -26,10 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MaterialSkin.2" Version="2.3.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="Microsoft.FlightSimulator.SimConnect">
       <Private>True</Private>
     </Reference>
