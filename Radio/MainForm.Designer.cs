@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             btn1 = new Button();
             lblFrequencyDisplay = new Label();
             btn2 = new Button();
@@ -248,7 +249,9 @@
             Controls.Add(btn2);
             Controls.Add(lblFrequencyDisplay);
             Controls.Add(btn1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainForm";
+            Text = "VHF-Controller";
             ResumeLayout(false);
             PerformLayout();
 

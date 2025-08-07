@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VHF-Controller")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b74245ff2e6f2a53b4bb0c6f817524ce8efa5c36")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90f14a1f41d08516c89ff389472c905bff828a1b")]
 [assembly: System.Reflection.AssemblyProductAttribute("VHF-Controller")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VHF-Controller")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

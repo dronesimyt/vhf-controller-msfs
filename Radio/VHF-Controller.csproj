@@ -14,9 +14,11 @@
   <SelfContained>false</SelfContained>
   <!-- Ensure you specify your target runtime -->
   <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  <ApplicationIcon>Resources\appicon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Resources\appicon.ico" />
     <Content Include="SimConnect.dll">
 		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		<CopyToPublishDirectory>Always</CopyToPublishDirectory>
