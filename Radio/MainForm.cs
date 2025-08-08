@@ -12,6 +12,9 @@ namespace VHF_Controller
         private const int WM_USER_SIMCONNECT = 0x0402;
         private bool advPrefilled = false;
         private bool isConnected = false;
+        private int activeVhf = 1;
+        private readonly Color ActiveColor = Color.FromArgb(70, 130, 180);  // steel blue
+        private readonly Color InactiveColor = SystemColors.Control;
 
 
 
@@ -23,6 +26,7 @@ namespace VHF_Controller
         private enum EVENT_ID
         {
             COM1_SET_HZ,    // our identifier for the “tune COM1” event
+            COM2_SET_HZ     // our identifier for the “tune COM2” event
         }
 
         // alongside your existing DEFINITIONS and EVENT_ID enums
@@ -37,6 +41,12 @@ namespace VHF_Controller
         {
             InitializeComponent();
             InitTimer();
+
+            btnVhf1.Click += (_, __) => SetActiveVhf(1);
+            btnVhf2.Click += (_, __) => SetActiveVhf(2);
+
+            // set the default active radio
+            SetActiveVhf(activeVhf);
 
             // Prevent manual resizing
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -145,19 +155,12 @@ namespace VHF_Controller
                 };
 
                 // 3) Map and register your event & data definitions
-                simConnect.MapClientEventToSimEvent(
-                    EVENT_ID.COM1_SET_HZ,
-                    "COM_RADIO_SET_HZ"
-                );
-                simConnect.AddClientEventToNotificationGroup(
-                    GROUP_ID.GROUP0,
-                    EVENT_ID.COM1_SET_HZ,
-                    false
-                );
-                simConnect.SetNotificationGroupPriority(
-                    GROUP_ID.GROUP0,
-                    SimConnect.SIMCONNECT_GROUP_PRIORITY_HIGHEST
-                );
+                // COM1
+                simConnect.MapClientEventToSimEvent(EVENT_ID.COM1_SET_HZ,"COM_RADIO_SET_HZ");
+                simConnect.AddClientEventToNotificationGroup(GROUP_ID.GROUP0,EVENT_ID.COM1_SET_HZ,false);
+                // COM2
+                simConnect.MapClientEventToSimEvent(EVENT_ID.COM2_SET_HZ, "COM2_RADIO_SET_HZ");
+                simConnect.AddClientEventToNotificationGroup(GROUP_ID.GROUP0, EVENT_ID.COM2_SET_HZ, false);
 
                 simConnect.AddToDataDefinition(
                     DEFINITIONS.INI_COM1_STBY_FREQUENCY,
@@ -168,7 +171,12 @@ namespace VHF_Controller
                 );
                 simConnect.RegisterDataDefineStruct<double>(DEFINITIONS.INI_COM1_STBY_FREQUENCY);
 
-                // 4) If we reach here, connection succeeded
+
+                simConnect.SetNotificationGroupPriority(
+                    GROUP_ID.GROUP0,
+                    SimConnect.SIMCONNECT_GROUP_PRIORITY_HIGHEST
+                );
+
                 isConnected = true;
                 UpdateConnectionStatusUI();
                 btnReconnect.Visible = false;
@@ -205,6 +213,26 @@ namespace VHF_Controller
             }
         }
 
+
+        private void SetActiveVhf(int vhf)
+        {
+            activeVhf = vhf;
+
+            UpdateVhfToggleUI();
+        }
+
+        private void UpdateVhfToggleUI()
+        {
+            // VHF1 active?
+            btnVhf1.BackColor = (activeVhf == 1) ? ActiveColor : InactiveColor;
+            btnVhf1.ForeColor = (activeVhf == 1) ? Color.White : Color.Black;
+
+            // VHF2 active?
+            btnVhf2.BackColor = (activeVhf == 2) ? ActiveColor : InactiveColor;
+            btnVhf2.ForeColor = (activeVhf == 2) ? Color.White : Color.Black;
+
+        }
+
         // 2) Handle numpad digits, Backspace → Reset, Enter → Set/ADV
         private void MainForm_KeyDown(object? sender, KeyEventArgs e)
         {
@@ -233,6 +261,15 @@ namespace VHF_Controller
                 btnEnter.PerformClick();
                 e.Handled = true;
                 e.SuppressKeyPress = true;   // prevent the focused button from also seeing Enter
+            }
+
+            if (e.KeyCode == Keys.V)
+            {
+                // flip activeVhf (1↔2) and update UI
+                SetActiveVhf(activeVhf == 1 ? 2 : 1);
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                return;
             }
         }
 
@@ -296,11 +333,16 @@ namespace VHF_Controller
             uint freqHz = (uint)(freqDec * 1_000_000m);
             if (simConnect != null)
             {
+
+                var evt = (activeVhf == 1)
+                    ? EVENT_ID.COM1_SET_HZ
+                    : EVENT_ID.COM2_SET_HZ;
+
                 try
                 {
                     simConnect.TransmitClientEvent(
                         SimConnect.SIMCONNECT_OBJECT_ID_USER,
-                        EVENT_ID.COM1_SET_HZ,
+                        evt,
                         freqHz,
                         GROUP_ID.GROUP0,
                         SIMCONNECT_EVENT_FLAG.GROUPID_IS_PRIORITY
