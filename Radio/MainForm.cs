@@ -42,6 +42,8 @@ namespace VHF_Controller
             InitializeComponent();
             InitTimer();
 
+            this.AcceptButton = btnEnter;
+
             btnVhf1.Click += (_, __) => SetActiveVhf(1);
             btnVhf2.Click += (_, __) => SetActiveVhf(2);
 
@@ -156,8 +158,8 @@ namespace VHF_Controller
 
                 // 3) Map and register your event & data definitions
                 // COM1
-                simConnect.MapClientEventToSimEvent(EVENT_ID.COM1_SET_HZ,"COM_RADIO_SET_HZ");
-                simConnect.AddClientEventToNotificationGroup(GROUP_ID.GROUP0,EVENT_ID.COM1_SET_HZ,false);
+                simConnect.MapClientEventToSimEvent(EVENT_ID.COM1_SET_HZ, "COM_RADIO_SET_HZ");
+                simConnect.AddClientEventToNotificationGroup(GROUP_ID.GROUP0, EVENT_ID.COM1_SET_HZ, false);
                 // COM2
                 simConnect.MapClientEventToSimEvent(EVENT_ID.COM2_SET_HZ, "COM2_RADIO_SET_HZ");
                 simConnect.AddClientEventToNotificationGroup(GROUP_ID.GROUP0, EVENT_ID.COM2_SET_HZ, false);
@@ -271,6 +273,20 @@ namespace VHF_Controller
                 e.SuppressKeyPress = true;
                 return;
             }
+
+            if (e.KeyCode == Keys.U)
+            {
+                // Trigger exactly the same code path as clicking ADV
+                // only prefill if we haven't already and nothing typed
+                if (frequencyBuffer.Length == 0 && !advPrefilled)
+                {
+                    btnEnter.PerformClick();
+                }
+
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                return;
+            }
         }
 
         private void btnReconnect_Click(object sender, EventArgs e)
@@ -297,6 +313,7 @@ namespace VHF_Controller
                 UpdateDisplay();       // shows "122.800"
                 UpdateButtonStates();  // re-enable buttons as if user typed it
 
+                btnEnter.Text = "SET";
                 return;  // exit before the normal “send to sim” logic
             }
 
@@ -375,6 +392,16 @@ namespace VHF_Controller
 
         }
 
+        private void btnReset_Click(object? sender, EventArgs? e)
+        {
+            frequencyBuffer = "";  // Clear the input completely
+            advPrefilled = false;
+            lblFrequencyDisplay.Text = "___.___";  // Show placeholder underscores
+            btnEnter.Text = "ADV";
+            UpdateButtonStates(); // Reset buttons
+            btnEnter.Focus();
+        }
+
         private void btn1_Click(object sender, EventArgs e)
         {
             btnEnter.Text = "SET";
@@ -392,6 +419,7 @@ namespace VHF_Controller
             frequencyBuffer = newBuffer;
             UpdateDisplay();
             UpdateButtonStates();
+            btnEnter.Focus();
         }
 
         private void btn2_Click(object sender, EventArgs e)
@@ -410,6 +438,7 @@ namespace VHF_Controller
             frequencyBuffer = newBuffer;
             UpdateDisplay();
             UpdateButtonStates();
+            btnEnter.Focus();
         }
 
         private void btn3_Click(object sender, EventArgs e)
@@ -428,6 +457,7 @@ namespace VHF_Controller
             frequencyBuffer = newBuffer;
             UpdateDisplay();
             UpdateButtonStates();
+            btnEnter.Focus();
         }
 
         private void btn4_Click(object sender, EventArgs e)
@@ -446,6 +476,7 @@ namespace VHF_Controller
             frequencyBuffer = newBuffer;
             UpdateDisplay();
             UpdateButtonStates();
+            btnEnter.Focus();
         }
 
         private void btn5_Click(object sender, EventArgs e)
@@ -464,6 +495,7 @@ namespace VHF_Controller
             frequencyBuffer = newBuffer;
             UpdateDisplay();
             UpdateButtonStates();
+            btnEnter.Focus();
         }
 
         private void btn6_Click(object sender, EventArgs e)
@@ -482,6 +514,7 @@ namespace VHF_Controller
             frequencyBuffer = newBuffer;
             UpdateDisplay();
             UpdateButtonStates();
+            btnEnter.Focus();
         }
 
         private void btn7_Click(object sender, EventArgs e)
@@ -499,6 +532,7 @@ namespace VHF_Controller
             frequencyBuffer = newBuffer;
             UpdateDisplay();
             UpdateButtonStates();
+            btnEnter.Focus();
 
         }
 
@@ -518,6 +552,7 @@ namespace VHF_Controller
             frequencyBuffer = newBuffer;
             UpdateDisplay();
             UpdateButtonStates();
+            btnEnter.Focus();
         }
 
         private void btn9_Click(object sender, EventArgs e)
@@ -536,6 +571,7 @@ namespace VHF_Controller
             frequencyBuffer = newBuffer;
             UpdateDisplay();
             UpdateButtonStates();
+            btnEnter.Focus();
 
         }
 
@@ -555,15 +591,7 @@ namespace VHF_Controller
             frequencyBuffer = newBuffer;
             UpdateDisplay();
             UpdateButtonStates();
-        }
-
-        private void btnReset_Click(object? sender, EventArgs? e)
-        {
-            frequencyBuffer = "";  // Clear the input completely
-            lblFrequencyDisplay.Text = "___.___";  // Show placeholder underscores
-            btnEnter.Text = "ADV";
-            UpdateButtonStates(); // Reset buttons
-            advPrefilled = false;
+            btnEnter.Focus();
         }
 
         private void UpdateDisplay()
@@ -713,6 +741,16 @@ namespace VHF_Controller
         private void chkAlwaysOnTop_CheckedChanged(object sender, EventArgs e)
         {
             this.TopMost = chkAlwaysOnTop.Checked;
+        }
+
+        private void btnVhf1_Click(object sender, EventArgs e)
+        {
+            btnEnter.Focus();
+        }
+
+        private void btnVhf2_Click(object sender, EventArgs e)
+        {
+            btnEnter.Focus();
         }
     }
 }

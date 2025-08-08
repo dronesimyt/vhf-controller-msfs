@@ -59,7 +59,7 @@
             btn1.Location = new Point(12, 96);
             btn1.Name = "btn1";
             btn1.Size = new Size(91, 48);
-            btn1.TabIndex = 0;
+            btn1.TabIndex = 99;
             btn1.Text = "1";
             btn1.UseVisualStyleBackColor = true;
             btn1.Click += btn1_Click;
@@ -202,7 +202,7 @@
             btnEnter.Location = new Point(197, 258);
             btnEnter.Name = "btnEnter";
             btnEnter.Size = new Size(91, 48);
-            btnEnter.TabIndex = 14;
+            btnEnter.TabIndex = 0;
             btnEnter.Text = "ADV";
             btnEnter.UseVisualStyleBackColor = true;
             btnEnter.Click += btnEnter_Click;
@@ -241,7 +241,7 @@
             btnReconnect.Location = new Point(213, 338);
             btnReconnect.Name = "btnReconnect";
             btnReconnect.Size = new Size(75, 23);
-            btnReconnect.TabIndex = 19;
+            btnReconnect.TabIndex = 90;
             btnReconnect.Text = "Reconnect";
             btnReconnect.UseVisualStyleBackColor = true;
             btnReconnect.Click += btnReconnect_Click;
@@ -266,6 +266,7 @@
             btnVhf1.TabIndex = 101;
             btnVhf1.Text = "VHF 1";
             btnVhf1.UseVisualStyleBackColor = true;
+            btnVhf1.Click += btnVhf1_Click;
             // 
             // btnVhf2
             // 
@@ -276,6 +277,7 @@
             btnVhf2.TabIndex = 102;
             btnVhf2.Text = "VHF 2";
             btnVhf2.UseVisualStyleBackColor = true;
+            btnVhf2.Click += btnVhf2_Click;
             // 
             // MainForm
             // 
